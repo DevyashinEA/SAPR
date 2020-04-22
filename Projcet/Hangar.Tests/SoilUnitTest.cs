@@ -1,8 +1,8 @@
 ﻿using System;
-using Hangar;
+using HangarModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hangar.Tests
+namespace HangarModel.Tests
 {
     [TestClass]
     public class SoilTests

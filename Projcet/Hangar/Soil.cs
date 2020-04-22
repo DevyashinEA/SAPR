@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hangar
+namespace HangarModel
 {
     /// <summary>
     /// Класс хранящий в себе данные о грунте.
@@ -10,15 +10,15 @@ namespace Hangar
         /// <summary>
         /// Тип грунта.
         /// </summary>
-        private SoilTypes _soilTypes;
+        private SoilTypes _soilTypes = 0;
         /// <summary>
         /// Размер слоя грунта.
         /// </summary>
-        private double _size;
+        private double _size = 0;
         /// <summary>
         /// Несущая способность грунта (нагрузка).
         /// </summary>
-        private double _load;
+        private double _load = -1;
 
         /// <summary>
         /// Возвращает и задаёт тип грунта классу Soil. В зависимости от типа грунта, присваивает значение нагрузки переменной _load.

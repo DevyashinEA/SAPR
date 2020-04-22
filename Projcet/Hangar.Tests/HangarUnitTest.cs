@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hangar.Tests
+namespace HangarModel.Tests
 {
     [TestClass]
     public class HangarTests

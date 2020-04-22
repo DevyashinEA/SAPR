@@ -1,0 +1,12 @@
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\Hangar.dll
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\Hangar.pdb
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.dll
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\AcDbMgd.xml
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\acdbmgdbrep.xml
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.pdb
+C:\DevyashinEA\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.xml
+C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csprojAssemblyReference.cache
+C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CoreCompileInputs.cache
+C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CopyComplete
+C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.dll
+C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.pdb

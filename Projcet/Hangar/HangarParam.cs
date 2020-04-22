@@ -1,12 +1,40 @@
 ﻿using System;
 
-namespace Hangar
+namespace HangarModel
 {
     /// <summary>
-    /// Класс HangarParam хранит параметры ангара.
+    /// Класс HangarParam хранит параметры ангара, выбрасывая ошибку при введении параметров за пределы допустимого.
     /// </summary>
     public class HangarParam
     {
+        /// <summary>
+        /// Коэф надёжности строения.
+        /// </summary>
+        const double _safetyMargin = 1.2;
+        /// <summary>
+        /// Удельный вес профлиста крыши.
+        /// </summary>
+        const int _specificProfiledSheet = 50;
+        /// <summary>
+        /// Удельные вес стальных листов стен и ворот.
+        /// </summary>
+        const int _specificSteelSheet = 60;
+        /// <summary>
+        /// Удельный вес железобетонного фундамента и подстенки (подошвы).
+        /// </summary>
+        const int _specificReinforcedConcrete = 2500;
+        /// <summary>
+        /// Среднесезонные снеговые нагрузки.
+        /// </summary>
+        const int _specificSnow = 350;
+        /// <summary>
+        /// Длина сваи.
+        /// </summary>
+        private double _heightPiles;
+        /// <summary>
+        /// Число свай.
+        /// </summary>
+        private int _quantityPiles;
         /// <summary>
         /// Высота ангара.
         /// </summary>
@@ -16,9 +44,9 @@ namespace Hangar
         /// </summary>
         private double _hangarWidth;
         /// <summary>
-        /// Высота ангара
+        /// Длина ангара
         /// </summary>
-        private double _hangarLendth;
+        private double _hangarLength;
         /// <summary>
         /// Высота ворот
         /// </summary>
@@ -45,7 +73,35 @@ namespace Hangar
         private Soil _thirdSoil = new Soil();
 
         /// <summary>
-        /// Возвращает и задаёт высоту ангара с ограничением 2..10 метров
+        /// Возвращает и задаёт длину свай.
+        /// </summary>
+        public double HeightPiles
+        {
+            get
+            {
+                return _heightPiles;
+            }
+            private set
+            {
+                _heightPiles = value;
+            }
+        }
+        /// <summary>
+        /// Возвращает и задаёт число свай.
+        /// </summary>
+        public int QuantityPiles
+        {
+            get
+            {
+                return _quantityPiles;
+            }
+            private set
+            {
+                _quantityPiles = value;
+            }
+        }
+        /// <summary>
+        /// Возвращает и задаёт высоту ангара с ограничением 2..10 метров.
         /// </summary>
         public double HangarHeight
         {
@@ -63,7 +119,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт ширину ангара с ограничением 2..14 метров
+        /// Возвращает и задаёт ширину ангара с ограничением 2..14 метров.
         /// </summary>
         public double HangarWidth
         {
@@ -81,25 +137,25 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт длину ангара с ограничением 2..40 метров
+        /// Возвращает и задаёт длину ангара с ограничением 2..40 метров.
         /// </summary>
         public double HangarLength
         {
             get
             {
-                return _hangarLendth;
+                return _hangarLength;
             }
             set
             {
                 if (value <= 40 && value >= 2)
-                    _hangarLendth = value;
+                    _hangarLength = value;
                 else
                     throw new ArgumentException("Длина ангара не может быть меньше 2м или больше 40м.");
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт высоту ворот с ограничением 2..(высота ангара) метров
+        /// Возвращает и задаёт высоту ворот с ограничением 2..(высота ангара) метров.
         /// </summary>
         public double GateHeight
         {
@@ -117,7 +173,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт ширину ворот с ограничением (Ширина ангара 25%) ..(Ширина ангара 50%) метров
+        /// Возвращает и задаёт ширину ворот с ограничением (Ширина ангара 25%) ..(Ширина ангара 50%) метров.
         /// </summary>
         public double GateWidth
         {
@@ -135,7 +191,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт высоту стен (подошвы) с ограничением 0.1..0.3 метров
+        /// Возвращает и задаёт высоту стен (подошвы) с ограничением 0.1..0.3 метров.
         /// </summary>
         public double WallHeight
         {
@@ -153,7 +209,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт первый слой грунта
+        /// Возвращает и задаёт первый слой грунта.
         /// </summary>
         public Soil FirstSoil
         {
@@ -168,7 +224,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт второй слой грунта
+        /// Возвращает и задаёт второй слой грунта.
         /// </summary>
         public Soil SecondSoil
         {
@@ -183,7 +239,7 @@ namespace Hangar
         }
 
         /// <summary>
-        /// Возвращает и задаёт третий слой грунта
+        /// Возвращает и задаёт третий слой грунта.
         /// </summary>
         public Soil ThirdSoil
         {
@@ -196,5 +252,37 @@ namespace Hangar
                 _thirdSoil = value;
             }
         }
+
+        /// <summary>
+        /// Метод производит расчёт веса ангара, сравнивая его с нагрузкой грунта.
+        /// Если грунт не способен выдержать, тогда происходит перерасчёт параметров с учётом второго грунта, далее с третьим. Если здание слишком тяжело, тогда
+        /// генерируется исключение.
+        /// Если грунт подходящий, происходит подсчёт длины свай.
+        /// </summary>
+        public void CheckCompatibility()
+        {
+            double firstLoad = FirstSoil.Load * 1.4 * FirstSoil.Size;
+            double secondLoad = SecondSoil.Load * 1.4 * SecondSoil.Size;
+            double thirdLoad = ThirdSoil.Load * 1.4 * ThirdSoil.Size;
+            QuantityPiles = (1 + (int)HangarLength / 2) * 2;
+            double areaRoof = HangarLength * HangarWidth;
+            double areaWall = (HangarHeight * HangarWidth + HangarHeight * HangarLength) * 2;
+            double perimeterWall = (HangarLength + HangarWidth) * 2;
+            double weight = areaRoof * _specificSnow + areaRoof * _specificProfiledSheet + areaWall * _specificSteelSheet + _specificReinforcedConcrete * perimeterWall * 0.2 * WallHeight;
+            if (weight * _safetyMargin / (625 * firstLoad) > QuantityPiles)
+                if (weight * _safetyMargin / (625 * (secondLoad + firstLoad)) > QuantityPiles)
+                    if (weight * _safetyMargin / (625 * (secondLoad + firstLoad + thirdLoad)) > QuantityPiles)
+                    {
+                        HeightPiles = 0;
+                        throw new System.Exception("Ни один из слоёв грунта не способен выдержать ангар с весом = " + weight + " кг.");
+                    }
+                    else
+                        HeightPiles = FirstSoil.Size + SecondSoil.Size + (weight * _safetyMargin / (625 * QuantityPiles) - firstLoad - secondLoad) / ThirdSoil.Load * 1.4;
+                else
+                    HeightPiles = FirstSoil.Size + (weight * _safetyMargin / (625 * QuantityPiles) - firstLoad) / SecondSoil.Load * 1.4;
+            else
+                HeightPiles = weight * _safetyMargin / (625 * QuantityPiles * FirstSoil.Load * 1.4);
+        }
+
     }
 }

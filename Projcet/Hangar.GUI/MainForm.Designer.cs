@@ -1,4 +1,4 @@
-﻿namespace Hangar
+﻿namespace HangarGUI
 {
     partial class MainForm
     {
@@ -430,11 +430,13 @@
             // 
             this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelError.ForeColor = System.Drawing.Color.Red;
-            this.labelError.Location = new System.Drawing.Point(206, 342);
+            this.labelError.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.labelError.Location = new System.Drawing.Point(206, 210);
             this.labelError.MinimumSize = new System.Drawing.Size(135, 30);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(222, 30);
+            this.labelError.Size = new System.Drawing.Size(222, 162);
             this.labelError.TabIndex = 16;
+            this.labelError.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // progress
             // 
@@ -455,6 +457,8 @@
             this.Controls.Add(this.panelThirdSoil);
             this.Controls.Add(this.panelSecondSoil);
             this.Controls.Add(this.panelFirstSoil);
+            this.MaximumSize = new System.Drawing.Size(451, 450);
+            this.MinimumSize = new System.Drawing.Size(451, 450);
             this.Name = "MainForm";
             this.Text = "Ангар";
             this.panelFirstSoil.ResumeLayout(false);

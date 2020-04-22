@@ -9,72 +9,10 @@ using System.Windows.Forms;
 namespace Hangar
 {
     /// <summary>
-    /// Класс проектирования, хранящий в себе методы проверки совместимости введённых пар-ров и создания&&вхождения объектов в среду автокад.
+    /// Класс проектирования, хранящий в себе методы проверки совместимости введённых пар-ров ангара с грунтом и создания&&вхождения объектов в среду автокад.
     /// </summary>
     class Desing
     {
-        /// <summary>
-        /// Класс хранящий в себе введённые пользователем пар-ры ангара.
-        /// </summary>
-        public HangarParam hangarParam;
-        /// <summary>
-        /// Коэф надёжности строения.
-        /// </summary>
-        private double _safetyMargin = 1.2;
-        /// <summary>
-        /// Удельный вес профлиста крыши.
-        /// </summary>
-        private int _specificProfiledSheet = 50;
-        /// <summary>
-        /// Удельные вес стальных листов стен и ворот.
-        /// </summary>
-        private int _specificSteelSheet = 60;
-        /// <summary>
-        /// Удельный вес железобетонного фундамента и подстенки (подошвы).
-        /// </summary>
-        private int _specificReinforcedConcrete = 2500;
-        /// <summary>
-        /// Среднесезонные снеговые нагрузки.
-        /// </summary>
-        private int _specificSnow = 350;
-        /// <summary>
-        /// Длина сваи.
-        /// </summary>
-        private double _heightPiles;
-        /// <summary>
-        /// Число свай.
-        /// </summary>
-        private int _quantityPiles;
-
-        /// <summary>
-        /// Метод производит расчёт веса ангара, сравнивая его с нагрузкой грунта.
-        /// Если грунт не способен выдержать, тогда происходит перерасчёт параметров с учётом второго грунта, далее с третьим. Если здание слишком тяжело, тогда
-        /// генерируется исключение.
-        /// Если грунт подходящий, происходит подсчёт длины свай и запуск процесса отрисовки ангара.
-        /// </summary>
-        public void CheckCompatibility()
-        {
-            _quantityPiles = (1 + (int)hangarParam.HangarLength / 2) * 2;
-            double areaRoof = hangarParam.HangarLength * hangarParam.HangarWidth;
-            double areaWall = (hangarParam.HangarHeight * hangarParam.HangarWidth + hangarParam.HangarHeight * hangarParam.HangarLength) * 2;
-            double perimeterWall = (hangarParam.HangarLength + hangarParam.HangarWidth) * 2;
-            double weight = areaRoof * _specificSnow + areaRoof * _specificProfiledSheet + areaWall * _specificSteelSheet + _specificReinforcedConcrete * perimeterWall * 0.2 * hangarParam.WallHeight;
-            double firstLoad = hangarParam.FirstSoil.Load * 1.4 * hangarParam.FirstSoil.Size;
-            double secondLoad = hangarParam.SecondSoil.Load * 1.4 * hangarParam.SecondSoil.Size;
-            double thirdLoad = hangarParam.ThirdSoil.Load * 1.4 * hangarParam.ThirdSoil.Size;
-            if (weight * _safetyMargin / (625 * firstLoad) > _quantityPiles)
-                if (weight * _safetyMargin / (625 * (secondLoad + firstLoad)) > _quantityPiles)
-                    if (weight * _safetyMargin / (625 * (secondLoad + firstLoad+ thirdLoad)) > _quantityPiles)
-                        throw new System.Exception("Ни один из слоёв грунта не способен выдержать ангар с весом = " + weight + " кг.");
-                    else
-                        _heightPiles = hangarParam.FirstSoil.Size + hangarParam.SecondSoil.Size +(weight * _safetyMargin / (625 * _quantityPiles) - firstLoad- secondLoad)/ hangarParam.ThirdSoil.Load * 1.4;
-                   else
-                    _heightPiles = hangarParam.FirstSoil.Size + (weight * _safetyMargin / (625 * _quantityPiles) - firstLoad) / hangarParam.SecondSoil.Load * 1.4;
-                else
-                _heightPiles = weight*_safetyMargin/(625* _quantityPiles * hangarParam.FirstSoil.Load * 1.4);
-            DrawHangar();
-        }
-
         /// <summary>
         /// Метод производит подключение к автокаду и в порядке очерёдности создаёт объекты, помещая их в базу данных. После чего производит вхождение объектов в автокад.
         /// </summary>
@@ -89,34 +27,34 @@ namespace Hangar
             Transaction tr = db.TransactionManager.StartTransaction();
             // имя создаваемого блока
             string blockName;
-            for (int i = 0; i < _quantityPiles; i++)
+            for (int i = 0; i < hangarParam.QuantityPiles; i++)
             {
                 blockName = "Pile" + i;
                 if ((i % 2) > 0)
-                    DrawObject((int)(i / 2) * hangarParam.HangarLength / (_quantityPiles/2 - 1) , 0, 0, 0.25, 0.25, _heightPiles);
+                    DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles/2 - 1) , 0, 0, 0.25, 0.25, hangarParam.HeightPiles);
                 else
-                    DrawObject((int)(i / 2) * hangarParam.HangarLength / (_quantityPiles/2 - 1) , hangarParam.HangarWidth, 0, 0.25, 0.25, _heightPiles);
+                    DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles/2 - 1) , hangarParam.HangarWidth, 0, 0.25, 0.25, hangarParam.HeightPiles);
             }
             for (int i = 0; i < 2; i++)
             {
                 blockName = "LongWall" + i;
                 if (i == 0)
-                    DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2, _heightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
+                    DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
                 else
-                    DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2 + hangarParam.HangarWidth, _heightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
+                    DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2 + hangarParam.HangarWidth, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
             }
             blockName = "Hangar";
-            DrawObject(0.25 / 2, 0.25 / 2, _heightPiles + hangarParam.WallHeight, hangarParam.HangarLength, hangarParam.HangarWidth, hangarParam.HangarHeight);
+            DrawObject(0.25 / 2, 0.25 / 2, hangarParam.HeightPiles + hangarParam.WallHeight, hangarParam.HangarLength, hangarParam.HangarWidth, hangarParam.HangarHeight);
             blockName = "FontWallLeft";
-            DrawObject((0.25 - 0.2) / 2, 0.25-(0.25 - 0.2) / 2, _heightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth -0.25 + (0.25 - 0.2)) / 2, hangarParam.WallHeight);
+            DrawObject((0.25 - 0.2) / 2, 0.25-(0.25 - 0.2) / 2, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth -0.25 + (0.25 - 0.2)) / 2, hangarParam.WallHeight);
             blockName = "FontWallRigth";
-            DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2 + (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2+ hangarParam.GateWidth, _heightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.WallHeight);
+            DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2 + (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2+ hangarParam.GateWidth, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.WallHeight);
             blockName = "Gate";
-            DrawObject(0.25 / 2, (0.25 + hangarParam.HangarWidth - hangarParam.GateWidth) / 2, _heightPiles + hangarParam.WallHeight, 0, hangarParam.GateWidth, hangarParam.GateHeight);
+            DrawObject(0.25 / 2, (0.25 + hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.HeightPiles + hangarParam.WallHeight, 0, hangarParam.GateWidth, hangarParam.GateHeight);
             blockName = "BackWall";
-            DrawObject((0.25-0.2) / 2+ hangarParam.HangarLength, (0.25 - 0.2) / 2 + 0.2, _heightPiles, 0.2, hangarParam.HangarWidth - 0.2, hangarParam.WallHeight);
+            DrawObject((0.25-0.2) / 2+ hangarParam.HangarLength, (0.25 - 0.2) / 2 + 0.2, hangarParam.HeightPiles, 0.2, hangarParam.HangarWidth - 0.2, hangarParam.WallHeight);
             blockName = "Roof";
-            DrawObject(0, (hangarParam.HangarWidth + 0.25) / 2, _heightPiles +hangarParam.WallHeight+hangarParam.HangarHeight,hangarParam.HangarLength+0.25,hangarParam.HangarWidth,0);
+            DrawObject(0, (hangarParam.HangarWidth + 0.25) / 2, hangarParam.HeightPiles +hangarParam.WallHeight+hangarParam.HangarHeight,hangarParam.HangarLength+0.25,hangarParam.HangarWidth,0);
 
             //Внутренний метод DrawHangar-а, который создаёт объект по заданным координатам и размерам.
             void DrawObject(double x, double y, double z, double length, double width, double height)

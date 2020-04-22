@@ -1,0 +1,13 @@
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csprojAssemblyReference.cache
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\HangarGUI.MainForm.resources
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.Properties.Resources.resources
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.GenerateResource.cache
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.CoreCompileInputs.cache
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.exe.config
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.exe
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.pdb
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.dll
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.pdb
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.CopyComplete
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.exe
+C:\DevyashinEA\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.pdb

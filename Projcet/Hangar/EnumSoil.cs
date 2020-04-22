@@ -1,4 +1,4 @@
-﻿namespace Hangar
+﻿namespace HangarModel
 {
     /// <summary>
     /// Перечисление хранит в себе основные типы грунтов.

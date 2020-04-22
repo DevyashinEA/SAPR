@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangar", "Hangar\Hangar.csproj", "{3F1CE8EC-BE6A-45BA-8BEF-0B8F05D73EDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangar.Model", "Hangar\Hangar.Model.csproj", "{3F1CE8EC-BE6A-45BA-8BEF-0B8F05D73EDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangar.Tests", "Hangar.Tests\Hangar.Tests.csproj", "{0A14CBD4-FC7F-4178-99D8-97846A91174E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangar.API", "Hangar.API\Hangar.API.csproj", "{137E5738-590D-4FF3-A027-C4D1BFC3D18B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangar.GUI", "Hangar.GUI\Hangar.GUI.csproj", "{8C592EF4-9468-4A4B-926A-CBF092AE6E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{0A14CBD4-FC7F-4178-99D8-97846A91174E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A14CBD4-FC7F-4178-99D8-97846A91174E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A14CBD4-FC7F-4178-99D8-97846A91174E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{137E5738-590D-4FF3-A027-C4D1BFC3D18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{137E5738-590D-4FF3-A027-C4D1BFC3D18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{137E5738-590D-4FF3-A027-C4D1BFC3D18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{137E5738-590D-4FF3-A027-C4D1BFC3D18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C592EF4-9468-4A4B-926A-CBF092AE6E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C592EF4-9468-4A4B-926A-CBF092AE6E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C592EF4-9468-4A4B-926A-CBF092AE6E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C592EF4-9468-4A4B-926A-CBF092AE6E51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
