@@ -4,9 +4,9 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.EditorInput;
 using HangarModel;
 using HangarGUI;
-using System.Windows.Forms;
 using Autodesk.AutoCAD.Runtime;
 using System;
+using System.Windows.Forms;
 
 namespace HangarAPI
 {
@@ -24,12 +24,9 @@ namespace HangarAPI
                 MessageBox.Show("Welcome!");
                 HangarParam hangarParam = new HangarParam();
                 Form mainForm = new MainForm(hangarParam);
-                mainForm.Show();
-                if (mainForm.DialogResult == DialogResult.OK)
-                    DrawHangar(hangarParam);
+                mainForm.ShowDialog();
+                DrawHangar(hangarParam);
             }
-
-
 
             // функция Terminate() необходима, чтобы реализовать интерфейс IExtensionApplication. Запускается при закрытии автокада.
             public void Terminate()
@@ -175,6 +172,7 @@ namespace HangarAPI
                         roof.Add(new Point3d(x + length, y - width / 2 - 86, z - 50));
                         roof.Add(new Point3d(x, y - width / 2 - 86, z - 50));
                         roof.Add(new Point3d(x, y, z + Math.Sqrt(width * width / 12)));
+                        roof.Add(new Point3d(x + length, y, z + Math.Sqrt(width * width / 12)));
                         return roof;
                     }
                 }

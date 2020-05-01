@@ -17,12 +17,12 @@ namespace HangarGUI
         /// _hangarParam - класс, хранящий в себе введённые пар-ры ангара.
         /// </summary>
         private List<TextBox> _textBoxes = new List<TextBox>();
-        private HangarParam _hangarParam;
+        private HangarParam _hangarParam = new HangarParam();
 
         /// <summary>
         /// Функция инициализирует элементы управления на экране и добавляет в лист основные поля ввода. 
         /// </summary>
-        public  MainForm(HangarParam hangarParam)
+        public MainForm(HangarParam hangarParam)
         {
             InitializeComponent();
             _hangarParam = hangarParam;
@@ -35,7 +35,9 @@ namespace HangarGUI
         }
 
         /// <summary>
-        /// Функция, срабатывающая при нажатии клавиш во время ввода текста в поля, которая разрешает ввод только дробных чисел больше нуля.
+        /// Функция, срабатывающая при нажатии клавиш во время ввода текста в поля.
+        /// Разрешает ввод только дробных чисел больше нуля.
+        /// Запрещает нажатие букв, символов и сочетаний клавиш, чтобы ограничить ввод неверных значений.
         /// </summary>
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -49,34 +51,38 @@ namespace HangarGUI
 
         /// <summary>
         /// Функция срабатывает на событие изменения текста в TextBox и производит отправку изменённого поля на проверку содержимого. 
-        /// По мимо того, выводит ошибку, в случае возникновения исключения во время проверки.
+        /// По мимо того, вызывает функцию для вывода ошибки, в случае возникновения исключения во время проверки.
         /// Также заполняет ProgressBar.
         /// </summary>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
+            CheckParamHangar(textBox);
             int i = 0;
             foreach (TextBox tb in _textBoxes)
             {
-                if (tb.Text != string.Empty && tb.BackColor == Color.White)
+                if (tb.Text != string.Empty && tb.BackColor != Color.FromArgb(0xff, 0xe1, 0xe1))
                     i++;
             }
-            if (_hangarParam.HeightPiles != 0)
-                i++;
-            progress.Value = i * 100 / 7;
-            try
+            if (i == 6)
             {
-                CheckParamHangar(textBox);
+                try
+                {
+                    _hangarParam.CheckCompatibility();
+                }
+                catch (Exception ex)
+                {
+                    WriteErrors(ex.Message);
+                }
+                if (_hangarParam.HeightPiles != 0)
+                    progress.Value = 100;
             }
-            catch (Exception ex)
-            {
-                WriteErrors(ex.Message);
-                textBox.BackColor = Color.FromArgb(0xff, 0xe1, 0xe1);
-            }
+            else
+                progress.Value = i * 100 / 7;
         }
 
         /// <summary>
-        /// Функция округляет значения до 10см, при переводе курсора на другой TextBox
+        /// Функция округляет значения до 10см, при переводе курсора на другой объект, чтобы избежать переполнения текстом ТекстБокса.
         /// </summary>
         private void textBox_Leave(object sender, EventArgs e)
         {
@@ -88,64 +94,82 @@ namespace HangarGUI
         /// <summary>
         /// Событие нажатия кнопки "Ок". Производит проверку всех полей листа _textBoxes и пар-ов грунта, 
         /// (в случае исключения, выводит ошибку не только в label на форме, но и вызывает MessageBox)
-        /// Создаёт класс проектирования и вызывает метод CheckCompatibilitу, после чего закрывает форму.
+        /// Используется перегруженный метод для проверки, чтобы накапливать ошибки в параметре lineErrors, для дальнейшего его вывода.
+        /// Вызывает метод CheckCompatibilitу, для проверки выносливости грунта.
+        /// В случае удачи, закрывает форму.
         /// </summary>
         private void Ok_Click(object sender, EventArgs e)
         {
-            labelError.Text = string.Empty;
+            string lineErrors = "";
             foreach (TextBox textBox in _textBoxes)
             {
-                textBox.BackColor = Color.FromArgb(0xff, 0xe1, 0xe1);
-                try
+                lineErrors = CheckParamHangar(textBox, lineErrors);
+            }
+            if (checkBoxThirdSoil.Checked == true)
+            {
+                lineErrors = CheckParamHangar(textThirdSoil, lineErrors);
+                if (comboBoxThirdSoil.SelectedIndex == -1)
                 {
-                    CheckParamHangar(textBox);
+                    WriteErrors("Не указан тип третьего слоя.");
+                    lineErrors = lineErrors + labelError.Text + "\n";
                 }
-                catch (Exception ex)
+            }
+            if (checkBoxSecondSoil.Checked == true)
+            {
+                lineErrors = CheckParamHangar(textSecondSoil, lineErrors);
+                if (comboBoxSecondSoil.SelectedIndex == -1)
                 {
-                    WriteErrors(ex.Message);
+                    WriteErrors("Не указан тип второго слоя.");
+                    lineErrors = lineErrors + labelError.Text + "\n";
                 }
+            }
+            lineErrors = CheckParamHangar(textFirstSoil, lineErrors);
+            if (comboBoxFirstSoil.SelectedIndex == -1)
+            {
+                WriteErrors("Не указан тип первого слоя.");
+                lineErrors = lineErrors + labelError.Text + "\n";
             }
             try
             {
-                if (checkBoxThirdSoil.Checked == true)
-                {
-                    CheckParamHangar(textThirdSoil);
-                    if (comboBoxThirdSoil.SelectedIndex == -1)
-                        WriteErrors("Указаны не все параметры грунта третьего слоя.");
-                }
-                if (checkBoxSecondSoil.Checked == true)
-                {
-                    CheckParamHangar(textSecondSoil);
-                    if (comboBoxSecondSoil.SelectedIndex == -1)
-                        WriteErrors("Указаны не все параметры грунта второго слоя.");
-                }
-                CheckParamHangar(textFirstSoil);
-                if (comboBoxFirstSoil.SelectedIndex == -1)
-                    WriteErrors("Указаны не все параметры грунта первого слоя.");
-                _hangarParam.CheckCompatibility();
+                if (lineErrors == "")
+                    _hangarParam.CheckCompatibility();
             }
             catch (Exception ex)
             {
                 WriteErrors(ex.Message);
+                lineErrors = lineErrors + labelError.Text + "\n";
             }
-            if (labelError.Text == string.Empty)
-                Close();
+            if (lineErrors != "")
+                MessageBox.Show(lineErrors);
             else
-            {
-                MessageBox.Show(labelError.Text);
-            }
+                Close();
         }
 
         /// <summary>
-        /// Основываясь на имени TextBox-а, производит запись соответствующего пар-ра в класс,
-        /// в случае, если ошибка не воз
-        /// никла, отчищает labelError и textBox, до изначального состояния.
-        /// Если поле было пустым, то выбрасывает исключение.
+        /// Перегруженный метод проверки пар-ов.
+        /// Добавляет к строке lineErrors ошибки, которые обнаружил другой метод CheckParamHangar.
+        /// Таким образом происходит запись всех найденных ошибок за раз. 
         /// </summary>
-        /// <param name="textBox">Принимает TextBox для последующей проверки</param>
+        /// <param name="textBox">Проверяемый параметр.</param>
+        /// <param name="lineErrors">Строка для записи ошибок.</param>
+        /// <returns></returns>
+        private string CheckParamHangar(TextBox textBox, string lineErrors)
+        {
+            CheckParamHangar(textBox);
+            if (labelError.Text != "")
+                lineErrors = lineErrors + labelError.Text + "\n";
+            return lineErrors;
+        }
+
+        /// <summary>
+        /// Основываясь на имени TextBox-а, производит запись соответствующего пар-ра в класс.
+        /// При ошибке записывает в текст labelError сообщение исключения и окрашивает поле в красный.
+        /// В случае, если ошибка не возникла, отчищает labelError и textBox, до изначального состояния.
+        /// </summary>
+        /// <param name="textBox">Параметр для проверки</param>
         private void CheckParamHangar(TextBox textBox)
         {
-            if (textBox.Text != string.Empty)
+            try
             {
                 switch (textBox.Name)
                 {
@@ -181,18 +205,19 @@ namespace HangarGUI
                         break;
                 }
                 textBox.BackColor = Color.White;
+                labelError.Text = "";
             }
-            else
+            catch (Exception ex)
             {
-                WriteErrors("Одно из полей пустое.");
+                WriteErrors(ex.Message);
                 textBox.BackColor = Color.FromArgb(0xff, 0xe1, 0xe1);
             }
         }
 
         /// <summary>
         /// Событие на изменение checkBox второго слоя.
-        /// Если true - включается возможность ввода второго слоя и включение третьего слоя
-        /// Если false - отключается возможность ввода второго слоя и включения третьего слоя
+        /// Если true - включается возможность ввода второго слоя и включение выбора третьего слоя.
+        /// Если false - отключается возможность ввода второго слоя и выбора третьего слоя, отчищаются поля и их цвет.
         /// </summary>
         private void checkBoxSecondSoil_CheckedChanged(object sender, EventArgs e)
         {
@@ -201,40 +226,56 @@ namespace HangarGUI
             checkBoxThirdSoil.Enabled = checkBoxSecondSoil.Checked;
             if (checkBoxSecondSoil.Checked == false)
             {
-                textSecondSoil.BackColor = Color.White;
-                textThirdSoil.BackColor = Color.White;
-                _hangarParam.SecondSoil = null;
+                _hangarParam.SecondSoil = new Soil();
                 textSecondSoil.Text = string.Empty;
                 comboBoxSecondSoil.SelectedIndex = -1;
                 checkBoxThirdSoil.Checked = false;
+                textSecondSoil.BackColor = Color.FromArgb(240, 240, 240);
+                textThirdSoil.BackColor = Color.FromArgb(240, 240, 240);
             }
+            else
+                textSecondSoil.BackColor = Color.White;
         }
 
         /// <summary>
         /// Событие на изменение checkBox третьего слоя.
-        /// Если true - включается возможность ввода третьего слоя
-        /// Если false - отключается возможность ввода третьего слоя 
+        /// Если true - включается возможность ввода третьего слоя.
+        /// Если false - отключается возможность ввода третьего слоя, отчищаются поля и их цвет.
         /// </summary>
         private void checkBoxThirdSoil_CheckedChanged(object sender, EventArgs e)
         {
-                comboBoxThirdSoil.Enabled = checkBoxThirdSoil.Checked;
-                textThirdSoil.Enabled = checkBoxThirdSoil.Checked;
+            comboBoxThirdSoil.Enabled = checkBoxThirdSoil.Checked;
+            textThirdSoil.Enabled = checkBoxThirdSoil.Checked;
             if (checkBoxThirdSoil.Checked == false)
             {
-                textThirdSoil.BackColor = Color.White;
-                _hangarParam.ThirdSoil = null;
+                _hangarParam.ThirdSoil = new Soil();
                 textThirdSoil.Text = string.Empty;
                 comboBoxThirdSoil.SelectedIndex = -1;
+                textThirdSoil.BackColor = Color.FromArgb(240, 240, 240);
             }
+            else
+                textThirdSoil.BackColor = Color.White;
         }
 
+        /// <summary>
+        /// Функция вывода ошибки в labelError на форме.
+        /// </summary>
+        /// <param name="error"></param>
         private void WriteErrors(string error)
         {
-            if (labelError.Text.Count(c => c == '\n') > 6)
-            {
-                labelError.Text = labelError.Text.Substring(0, labelError.Text.IndexOf('\n'));
-            }
-            labelError.Text = labelError.Text + "\n" + error;
+            labelError.Text = error;
+        }
+
+        /// <summary>
+        /// Функция реагирующая на изменение ТрэкБара, которая заносит изменённое значение в снеговые нагрузки
+        /// пар-ов ангара.
+        /// А также изменяет текстовое поле на форме в соответствие выбранной нагрузке.
+        /// </summary>
+        private void snowLoadBar_Scroll(object sender, EventArgs e)
+        {
+            TrackBar bar = (TrackBar)sender;
+            _hangarParam.SnowLoad = (int)(400 *bar.Value / 10 + 200);
+            labelSnowLoad.Text = "Снеговые нагрузки, кг/м2 " + _hangarParam.SnowLoad;
         }
     }
 }

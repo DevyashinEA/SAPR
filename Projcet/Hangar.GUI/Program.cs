@@ -5,6 +5,9 @@ namespace HangarGUI
 {
     public class Program
     {
+        /// <summary>
+        /// Фкнция для сбора проекта отдельно от API.
+        /// </summary>
         static public void Main()
         {
             MessageBox.Show("Welcome!");

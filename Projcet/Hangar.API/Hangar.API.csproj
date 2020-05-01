@@ -5,55 +5,69 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <COMReference Include="ACSMCOMPONENTS23Lib.dll">
+      <Guid>6243505a-a1a6-4eaa-84bb-f9f8173c54bb</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Hangar.GUI\Hangar.GUI.csproj" />
     <ProjectReference Include="..\Hangar\Hangar.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="accoremgd">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcCoreMgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcCoreMgd.dll</HintPath>
     </Reference>
     <Reference Include="AcCui">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcCui.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcCui.dll</HintPath>
     </Reference>
     <Reference Include="Acdbmgd">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcDbMgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcDbMgd.dll</HintPath>
     </Reference>
     <Reference Include="acdbmgdbrep">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\acdbmgdbrep.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\acdbmgdbrep.dll</HintPath>
     </Reference>
     <Reference Include="AcDx">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcDx.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcDx.dll</HintPath>
     </Reference>
     <Reference Include="acmgd">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcMgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcMgd.dll</HintPath>
     </Reference>
     <Reference Include="AcMr">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcMr.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcMr.dll</HintPath>
+    </Reference>
+    <Reference Include="AcSeamless">
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcSeamless.dll</HintPath>
     </Reference>
     <Reference Include="AcTcMgd">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcTcMgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcTcMgd.dll</HintPath>
     </Reference>
     <Reference Include="AcWindows">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcWindows.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AcWindows.dll</HintPath>
     </Reference>
     <Reference Include="AdUIMgd">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdUIMgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdUIMgd.dll</HintPath>
     </Reference>
     <Reference Include="AdUiPalettes">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdUiPalettes.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdUiPalettes.dll</HintPath>
     </Reference>
     <Reference Include="AdWindows">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdWindows.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc\AdWindows.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.AutoCAD.Interop">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc-win32\Autodesk.AutoCAD.Interop.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc-win32\Autodesk.AutoCAD.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.AutoCAD.Interop.Common">
-      <HintPath>..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc-x64\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Autodesk\Autodesk_ObjectARX_2019_Win_64_and_32_Bit\inc-win32\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
 

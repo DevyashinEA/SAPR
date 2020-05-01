@@ -10,3 +10,15 @@ C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CoreCompileInpu
 C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CopyComplete
 C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.dll
 C:\DevyashinEA\SAPR\Projcet\Hangar\obj\Debug\Hangar.pdb
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\Hangar.dll
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\Hangar.pdb
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.dll
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\AcDbMgd.xml
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\acdbmgdbrep.xml
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.pdb
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.xml
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csprojAssemblyReference.cache
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CoreCompileInputs.cache
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CopyComplete
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.dll
+C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.pdb

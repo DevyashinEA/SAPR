@@ -59,10 +59,13 @@
             this.textHangarLenght = new System.Windows.Forms.TextBox();
             this.labelError = new System.Windows.Forms.Label();
             this.progress = new System.Windows.Forms.ProgressBar();
+            this.snowLoadBar = new System.Windows.Forms.TrackBar();
+            this.labelSnowLoad = new System.Windows.Forms.Label();
             this.panelFirstSoil.SuspendLayout();
             this.panelSecondSoil.SuspendLayout();
             this.panelThirdSoil.SuspendLayout();
             this.panelHangar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snowLoadBar)).BeginInit();
             this.SuspendLayout();
             // 
             // panelFirstSoil
@@ -431,10 +434,10 @@
             this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelError.ForeColor = System.Drawing.Color.Red;
             this.labelError.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.labelError.Location = new System.Drawing.Point(206, 210);
+            this.labelError.Location = new System.Drawing.Point(206, 300);
             this.labelError.MinimumSize = new System.Drawing.Size(135, 30);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(222, 162);
+            this.labelError.Size = new System.Drawing.Size(222, 72);
             this.labelError.TabIndex = 16;
             this.labelError.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -445,11 +448,33 @@
             this.progress.Size = new System.Drawing.Size(135, 30);
             this.progress.TabIndex = 33;
             // 
+            // snowLoadBar
+            // 
+            this.snowLoadBar.Location = new System.Drawing.Point(209, 214);
+            this.snowLoadBar.Name = "snowLoadBar";
+            this.snowLoadBar.Size = new System.Drawing.Size(219, 45);
+            this.snowLoadBar.TabIndex = 34;
+            this.snowLoadBar.Value = 5;
+            this.snowLoadBar.Scroll += new System.EventHandler(this.snowLoadBar_Scroll);
+            // 
+            // labelSnowLoad
+            // 
+            this.labelSnowLoad.AutoSize = true;
+            this.labelSnowLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSnowLoad.Location = new System.Drawing.Point(202, 262);
+            this.labelSnowLoad.MinimumSize = new System.Drawing.Size(142, 20);
+            this.labelSnowLoad.Name = "labelSnowLoad";
+            this.labelSnowLoad.Size = new System.Drawing.Size(231, 20);
+            this.labelSnowLoad.TabIndex = 35;
+            this.labelSnowLoad.Text = "Снеговые нагрузки, кг/м2 300";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 412);
+            this.Controls.Add(this.labelSnowLoad);
+            this.Controls.Add(this.snowLoadBar);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.panelHangar);
@@ -469,7 +494,9 @@
             this.panelThirdSoil.PerformLayout();
             this.panelHangar.ResumeLayout(false);
             this.panelHangar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snowLoadBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -506,5 +533,7 @@
         private System.Windows.Forms.TextBox textHangarLenght;
         private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.ProgressBar progress;
+        private System.Windows.Forms.TrackBar snowLoadBar;
+        private System.Windows.Forms.Label labelSnowLoad;
     }
 }

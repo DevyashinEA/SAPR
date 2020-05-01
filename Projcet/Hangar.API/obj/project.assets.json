@@ -218,11 +218,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
+      "projectUniqueName": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
       "projectName": "Hangar.API",
-      "projectPath": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
+      "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
       "packagesPath": "C:\\Users\\Администратор.HOMEPC\\.nuget\\packages\\",
-      "outputPath": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.API\\obj\\",
+      "outputPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Администратор.HOMEPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -238,11 +238,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj": {
-              "projectPath": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj"
+            "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj": {
+              "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj"
             },
-            "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj": {
-              "projectPath": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj"
+            "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj": {
+              "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj"
             }
           }
         }

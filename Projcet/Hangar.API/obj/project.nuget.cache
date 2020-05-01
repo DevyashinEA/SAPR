@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WSFZl7HJ+Mb5cwmv6BY0/cbDAgt6JxsNV7aT0sld103cyRjMRLqJclpGtlTQyLtI2sIdSopQH86EBNQNLBro3A==",
+  "dgSpecHash": "3pUVcO7GptiNOu+Ssh6nJoi84qVndgDoU6erJNJ13ymhrh70Vs1/svdqPWZikSAUKZd6CIeoR+nW3042FNqZXw==",
   "success": true,
-  "projectFilePath": "C:\\DevyashinEA\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
+  "projectFilePath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Администратор.HOMEPC\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Администратор.HOMEPC\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

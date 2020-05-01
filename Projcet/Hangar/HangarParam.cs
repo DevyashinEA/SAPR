@@ -24,9 +24,9 @@ namespace HangarModel
         /// </summary>
         const int _specificReinforcedConcrete = 2500;
         /// <summary>
-        /// Среднесезонные снеговые нагрузки.
+        /// Снеговая нагрузка.
         /// </summary>
-        const int _specificSnow = 350;
+        private int _snowLoad = 300;
         /// <summary>
         /// Длина сваи.
         /// </summary>
@@ -72,6 +72,20 @@ namespace HangarModel
         /// </summary>
         private Soil _thirdSoil = new Soil();
 
+        /// <summary>
+        /// Возвращает и задаёт снеговую нагрузку.
+        /// </summary>
+        public int SnowLoad
+        {
+            get
+            {
+                return _snowLoad;
+            }
+            set
+            {
+                _snowLoad = value;
+            }
+        }
         /// <summary>
         /// Возвращает и задаёт длину свай.
         /// </summary>
@@ -268,7 +282,7 @@ namespace HangarModel
             double areaRoof = HangarLength * HangarWidth;
             double areaWall = (HangarHeight * HangarWidth + HangarHeight * HangarLength) * 2;
             double perimeterWall = (HangarLength + HangarWidth) * 2;
-            double weight = areaRoof * _specificSnow + areaRoof * _specificProfiledSheet + areaWall * _specificSteelSheet + _specificReinforcedConcrete * perimeterWall * 0.2 * WallHeight;
+            double weight = areaRoof * _snowLoad + areaRoof * _specificProfiledSheet + areaWall * _specificSteelSheet + _specificReinforcedConcrete * perimeterWall * 0.2 * WallHeight;
             if (weight * _safetyMargin / (625 * firstLoad) > QuantityPiles)
                 if (weight * _safetyMargin / (625 * (secondLoad + firstLoad)) > QuantityPiles)
                     if (weight * _safetyMargin / (625 * (secondLoad + firstLoad + thirdLoad)) > QuantityPiles)
