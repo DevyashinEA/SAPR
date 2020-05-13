@@ -213,19 +213,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Администратор.HOMEPC\\.nuget\\packages\\": {}
+    "C:\\Users\\alexe\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
+      "projectUniqueName": "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar.API\\Hangar.API.csproj",
       "projectName": "Hangar.API",
-      "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\Hangar.API.csproj",
-      "packagesPath": "C:\\Users\\Администратор.HOMEPC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.API\\obj\\",
+      "projectPath": "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar.API\\Hangar.API.csproj",
+      "packagesPath": "C:\\Users\\alexe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Администратор.HOMEPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alexe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -238,11 +242,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj": {
-              "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj"
+            "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj": {
+              "projectPath": "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar.GUI\\Hangar.GUI.csproj"
             },
-            "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj": {
-              "projectPath": "C:\\Users\\Администратор.HOMEPC\\Desktop\\SAPR\\Projcet\\Hangar\\Hangar.Model.csproj"
+            "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar\\Hangar.Model.csproj": {
+              "projectPath": "C:\\Users\\alexe\\source\\repos\\ORSAPR\\586-2\\Devyashin\\Projcet\\Hangar\\Hangar.Model.csproj"
             }
           }
         }
