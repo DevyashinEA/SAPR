@@ -27,7 +27,7 @@ namespace HangarModel
         /// <summary>
         /// Снеговая нагрузка.
         /// </summary>
-        private int _seasonalSnowLoads = 300;
+        private int _seasonalSnowLoads = 400;
         /// <summary>
         /// Длина сваи.
         /// </summary>
@@ -288,13 +288,11 @@ namespace HangarModel
         /// <param name="value">Значение переменной для сравнения с ограничителями.</param>
         private void LimitCheck(string key, double value)
         {
-            double min = (double)_sizeRestrictions[key][0];
-            double max = (double)_sizeRestrictions[key][1];
-            string nameParam = (string)_sizeRestrictions[key][2];
-            if( value < min || value > max)
-            {
+            double min = (double)Convert.ChangeType(_sizeRestrictions[key][0], typeof(double));
+            double max = (double)Convert.ChangeType(_sizeRestrictions[key][1], typeof(double));
+            string nameParam = (string)Convert.ChangeType(_sizeRestrictions[key][2], typeof(string));
+            if ( value < min || value > max)
                 throw new ArgumentException(nameParam + "не может быть меньше " + min + "м или больше " + max + "м.");
-            }
         }
 
         /// <summary>

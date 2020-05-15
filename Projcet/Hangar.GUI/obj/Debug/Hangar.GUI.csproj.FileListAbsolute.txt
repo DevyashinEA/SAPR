@@ -24,3 +24,16 @@ C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar.GUI\obj\D
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.CopyComplete
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.exe
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.pdb
+C:\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.exe.config
+C:\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.exe
+C:\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.GUI.pdb
+C:\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.dll
+C:\SAPR\Projcet\Hangar.GUI\bin\Debug\Hangar.pdb
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csprojAssemblyReference.cache
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\HangarGUI.MainForm.resources
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.Properties.Resources.resources
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.GenerateResource.cache
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.CoreCompileInputs.cache
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.csproj.CopyComplete
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.exe
+C:\SAPR\Projcet\Hangar.GUI\obj\Debug\Hangar.GUI.pdb

@@ -275,7 +275,7 @@ namespace HangarGUI
         {
             TrackBar bar = (TrackBar)sender;
             _hangarParam.SnowLoad = (int)(400 *bar.Value / 10 + 200);
-            labelSnowLoad.Text = "Снеговые нагрузки, кг/м2 " + _hangarParam.SnowLoad;
+            labelSnowLoad.Text = "Снеговые нагрузки, кг/м2=" + _hangarParam.SnowLoad;
         }
     }
 }

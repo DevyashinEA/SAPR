@@ -473,9 +473,9 @@
             this.labelSnowLoad.Location = new System.Drawing.Point(202, 262);
             this.labelSnowLoad.MinimumSize = new System.Drawing.Size(142, 20);
             this.labelSnowLoad.Name = "labelSnowLoad";
-            this.labelSnowLoad.Size = new System.Drawing.Size(231, 20);
+            this.labelSnowLoad.Size = new System.Drawing.Size(236, 20);
             this.labelSnowLoad.TabIndex = 35;
-            this.labelSnowLoad.Text = "Снеговые нагрузки, кг/м2 300";
+            this.labelSnowLoad.Text = "Снеговые нагрузки, кг/м2=400";
             // 
             // MainForm
             // 

@@ -22,3 +22,17 @@ C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CopyComplete
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.dll
 C:\Users\Администратор.HOMEPC\Desktop\SAPR\Projcet\Hangar\obj\Debug\Hangar.pdb
+C:\SAPR\Projcet\Hangar\bin\Debug\Hangar.dll
+C:\SAPR\Projcet\Hangar\bin\Debug\Hangar.pdb
+C:\SAPR\Projcet\Hangar\bin\Debug\AcDbMgd.dll
+C:\SAPR\Projcet\Hangar\bin\Debug\acdbmgdbrep.dll
+C:\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.dll
+C:\SAPR\Projcet\Hangar\bin\Debug\AcDbMgd.xml
+C:\SAPR\Projcet\Hangar\bin\Debug\acdbmgdbrep.xml
+C:\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.pdb
+C:\SAPR\Projcet\Hangar\bin\Debug\nunit.framework.xml
+C:\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csprojAssemblyReference.cache
+C:\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CoreCompileInputs.cache
+C:\SAPR\Projcet\Hangar\obj\Debug\Hangar.Model.csproj.CopyComplete
+C:\SAPR\Projcet\Hangar\obj\Debug\Hangar.dll
+C:\SAPR\Projcet\Hangar\obj\Debug\Hangar.pdb
