@@ -150,6 +150,7 @@
             this.textSecondSoil.Name = "textSecondSoil";
             this.textSecondSoil.Size = new System.Drawing.Size(142, 26);
             this.textSecondSoil.TabIndex = 19;
+            this.textSecondSoil.Tag = "textSecondSoil";
             this.textSecondSoil.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textSecondSoil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textSecondSoil.Leave += new System.EventHandler(this.textBox_Leave);
@@ -216,6 +217,7 @@
             this.textThirdSoil.Name = "textThirdSoil";
             this.textThirdSoil.Size = new System.Drawing.Size(142, 26);
             this.textThirdSoil.TabIndex = 20;
+            this.textThirdSoil.Tag = "textThirdSoil";
             this.textThirdSoil.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textThirdSoil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textThirdSoil.Leave += new System.EventHandler(this.textBox_Leave);
@@ -340,6 +342,7 @@
             this.textHangarHeight.Name = "textHangarHeight";
             this.textHangarHeight.Size = new System.Drawing.Size(63, 26);
             this.textHangarHeight.TabIndex = 18;
+            this.textHangarHeight.Tag = "textHangarHeight";
             this.textHangarHeight.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textHangarHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textHangarHeight.Leave += new System.EventHandler(this.textBox_Leave);
@@ -381,6 +384,7 @@
             this.textWallHeight.Name = "textWallHeight";
             this.textWallHeight.Size = new System.Drawing.Size(63, 26);
             this.textWallHeight.TabIndex = 34;
+            this.textWallHeight.Tag = "textWallHeight";
             this.textWallHeight.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textWallHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textWallHeight.Leave += new System.EventHandler(this.textBox_Leave);
@@ -392,6 +396,7 @@
             this.textGateWidth.Name = "textGateWidth";
             this.textGateWidth.Size = new System.Drawing.Size(63, 26);
             this.textGateWidth.TabIndex = 33;
+            this.textGateWidth.Tag = "textGateWidth";
             this.textGateWidth.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textGateWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textGateWidth.Leave += new System.EventHandler(this.textBox_Leave);
@@ -403,6 +408,7 @@
             this.textGateHeight.Name = "textGateHeight";
             this.textGateHeight.Size = new System.Drawing.Size(63, 26);
             this.textGateHeight.TabIndex = 32;
+            this.textGateHeight.Tag = "textGateHeight";
             this.textGateHeight.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textGateHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textGateHeight.Leave += new System.EventHandler(this.textBox_Leave);
@@ -414,6 +420,7 @@
             this.textHangarWidth.Name = "textHangarWidth";
             this.textHangarWidth.Size = new System.Drawing.Size(63, 26);
             this.textHangarWidth.TabIndex = 31;
+            this.textHangarWidth.Tag = "textHangarWidth";
             this.textHangarWidth.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textHangarWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textHangarWidth.Leave += new System.EventHandler(this.textBox_Leave);
@@ -425,6 +432,7 @@
             this.textHangarLenght.Name = "textHangarLenght";
             this.textHangarLenght.Size = new System.Drawing.Size(63, 26);
             this.textHangarLenght.TabIndex = 30;
+            this.textHangarLenght.Tag = "textHangarLenght";
             this.textHangarLenght.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textHangarLenght.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textHangarLenght.Leave += new System.EventHandler(this.textBox_Leave);
@@ -454,6 +462,7 @@
             this.snowLoadBar.Name = "snowLoadBar";
             this.snowLoadBar.Size = new System.Drawing.Size(219, 45);
             this.snowLoadBar.TabIndex = 34;
+            this.snowLoadBar.Tag = "snowLoadBar";
             this.snowLoadBar.Value = 5;
             this.snowLoadBar.Scroll += new System.EventHandler(this.snowLoadBar_Scroll);
             // 

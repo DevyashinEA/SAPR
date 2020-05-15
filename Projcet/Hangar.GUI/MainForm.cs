@@ -162,16 +162,16 @@ namespace HangarGUI
         }
 
         /// <summary>
-        /// Основываясь на имени TextBox-а, производит запись соответствующего пар-ра в класс.
+        /// Основываясь на теге TextBox-а, производит запись соответствующего пар-ра в класс.
         /// При ошибке записывает в текст labelError сообщение исключения и окрашивает поле в красный.
         /// В случае, если ошибка не возникла, отчищает labelError и textBox, до изначального состояния.
         /// </summary>
-        /// <param name="textBox">Параметр для проверки</param>
+        /// <param name="textBox">Текстбокс для проверки</param>
         private void CheckParamHangar(TextBox textBox)
         {
             try
             {
-                switch (textBox.Name)
+                switch (textBox.Tag)
                 {
                     case "textGateHeight":
                         _hangarParam.GateHeight = double.Parse(textGateHeight.Text);
