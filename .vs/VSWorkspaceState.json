@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Projcet",
+    "\\Projcet\\Hangar",
+    "\\Projcet\\Hangar.API",
+    "\\Projcet\\Hangar.GUI",
+    "\\Projcet\\Hangar.GUI\\Properties",
+    "\\Projcet\\Hangar.UnitTests",
+    "\\Projcet\\Hangar.UnitTests\\Properties",
+    "\\Projcet\\Hangar\\Properties",
+    "\\Projcet\\packages"
   ],
+  "SelectedNode": "\\Projcet\\Hangar.GUI\\Properties\\Resources.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

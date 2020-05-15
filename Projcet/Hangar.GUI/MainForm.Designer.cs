@@ -349,12 +349,12 @@
             // 
             // Ok
             // 
-            this.Ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Ok.Location = new System.Drawing.Point(347, 375);
+            this.Ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Ok.Location = new System.Drawing.Point(327, 375);
             this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(81, 30);
+            this.Ok.Size = new System.Drawing.Size(101, 30);
             this.Ok.TabIndex = 30;
-            this.Ok.Text = "Ок";
+            this.Ok.Text = "Построить";
             this.Ok.UseVisualStyleBackColor = true;
             this.Ok.Click += new System.EventHandler(this.Ok_Click);
             // 
@@ -453,7 +453,7 @@
             // 
             this.progress.Location = new System.Drawing.Point(206, 375);
             this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(135, 30);
+            this.progress.Size = new System.Drawing.Size(115, 30);
             this.progress.TabIndex = 33;
             // 
             // snowLoadBar
