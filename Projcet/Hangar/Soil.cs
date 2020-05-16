@@ -31,6 +31,8 @@ namespace HangarModel
             }
             set
             {
+                if(Enum.IsDefined(typeof(SoilTypes), value)==false)
+                    throw new ArgumentException("Такого типа грунта нет в базе.");
                 _soilTypes = value;
                 switch ((int)_soilTypes)
                 {

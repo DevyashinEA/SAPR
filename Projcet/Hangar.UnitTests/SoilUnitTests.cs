@@ -17,7 +17,7 @@ namespace Hangar.UnitTests
             _soil.Size = 1;
         }
 
-        [Test(Description = "Проверка высоты ангара")]
+        [Test(Description = "Проверка типа слоя")]
         public void TestSoilTypestSet_CorrectValue()
         {
             const SoilTypes actual = 0;
@@ -26,7 +26,7 @@ namespace Hangar.UnitTests
                 "Проверка на правильные значения");
         }
 
-        [Test(Description = "Проверка высоты ангара")]
+        [Test(Description = "Проверка высоты слоя")]
         public void TestSizeSet_CorrectValue()
         {
             const double actual = 1;
@@ -35,7 +35,7 @@ namespace Hangar.UnitTests
                 "Проверка на правильные значения");
         }
 
-        [Test(Description = "Проверка высоты ангара")]
+        [Test(Description = "Проверка нагрузки грунта")]
         public void TestLoadSet_CorrectValue()
         {
             const double actual = 5;
@@ -45,10 +45,21 @@ namespace Hangar.UnitTests
         }
 
         [TestCase(-1, "Исключение, если число меньше граничных значений",
-            TestName = "Присвоение меньшего числа - Высота ангара")]
+            TestName = "Присвоение отрицательного типа - тип грунта")]
         [TestCase(8, "Исключение, если число больше граничных значений",
-            TestName = "Присвоение большего числа - Высота ангара")]
-        public void TestSizetSet_ArgumentException(int wrongParam, string message)
+            TestName = "Присвоение за границ перечисления - тип грунта")]
+        public void TestSoilTypestSet_ArgumentException(SoilTypes wrongParam, string message)
+        {
+            Assert.Throws<ArgumentException>(
+                () => { _soil.SoilTypes = wrongParam; },
+                message);
+        }
+
+        [TestCase(-1, "Исключение, если число меньше граничных значений",
+            TestName = "Присвоение меньшего числа - Высота слоя")]
+        [TestCase(8, "Исключение, если число больше граничных значений",
+            TestName = "Присвоение большего числа - Высота слоя")]
+        public void TestSizetSet_ArgumentException(double wrongParam, string message)
         {
             Assert.Throws<ArgumentException>(
                 () => { _soil.Size = wrongParam; },
