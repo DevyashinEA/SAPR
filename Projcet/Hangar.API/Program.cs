@@ -38,8 +38,6 @@ namespace HangarAPI
             /// Метод производит подключение к автокаду и в порядке очерёдности создаёт объекты, помещая их в базу данных. После чего производит вхождение объектов в автокад.
             private void DrawHangar(HangarParam hangarParam)
             {
-                for (int j = 1; j < 10001; j++)
-                {
                     // получаем ссылки на документ и его БД
                     Document doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
                     Database db = doc.Database;
@@ -51,7 +49,7 @@ namespace HangarAPI
                     string blockName;
                     for (int i = 0; i < hangarParam.QuantityPiles; i++)
                     {
-                        blockName = "Pile" + i + j;
+                        blockName = "Pile" + i;
                         if ((i % 2) > 0)
                             DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles / 2 - 1), 0, 0, 0.25, 0.25, hangarParam.HeightPiles);
                         else
@@ -59,23 +57,23 @@ namespace HangarAPI
                     }
                     for (int i = 0; i < 2; i++)
                     {
-                        blockName = "LongWall" + i + j;
+                        blockName = "LongWall" + i;
                         if (i == 0)
                             DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
                         else
                             DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2 + hangarParam.HangarWidth, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
                     }
-                    blockName = "Hangar" + j;
+                    blockName = "Hangar";
                     DrawObject(0.25 / 2, 0.25 / 2, hangarParam.HeightPiles + hangarParam.WallHeight, hangarParam.HangarLength, hangarParam.HangarWidth, hangarParam.HangarHeight);
-                    blockName = "FontWallLeft" + j;
+                    blockName = "FontWallLeft";
                     DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2, hangarParam.WallHeight);
-                    blockName = "FontWallRigth" + j;
+                    blockName = "FontWallRigth";
                     DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2 + (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2 + hangarParam.GateWidth, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.WallHeight);
-                    blockName = "Gate" + j;
+                    blockName = "Gate";
                     DrawObject(0.25 / 2, (0.25 + hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.HeightPiles + hangarParam.WallHeight, 0, hangarParam.GateWidth, hangarParam.GateHeight);
-                    blockName = "BackWall" + j;
+                    blockName = "BackWall";
                     DrawObject((0.25 - 0.2) / 2 + hangarParam.HangarLength, (0.25 - 0.2) / 2 + 0.2, hangarParam.HeightPiles, 0.2, hangarParam.HangarWidth - 0.2, hangarParam.WallHeight);
-                    blockName = "Roof" + j;
+                    blockName = "Roof";
                     DrawObject(0, (hangarParam.HangarWidth + 0.25) / 2, hangarParam.HeightPiles + hangarParam.WallHeight + hangarParam.HangarHeight, hangarParam.HangarLength + 0.25, hangarParam.HangarWidth, 0);
 
                     //Внутренний метод DrawHangar-а, который создаёт объект по заданным координатам и размерам.
@@ -180,7 +178,6 @@ namespace HangarAPI
                     }
                     // фиксируем транзакцию
                     tr.Commit();
-                }
             }
         }
     }
