@@ -86,6 +86,7 @@
             this.textFirstSoil.Name = "textFirstSoil";
             this.textFirstSoil.Size = new System.Drawing.Size(142, 26);
             this.textFirstSoil.TabIndex = 13;
+            this.textFirstSoil.Tag = "textFirstSoil";
             this.textFirstSoil.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.textFirstSoil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.textFirstSoil.Leave += new System.EventHandler(this.textBox_Leave);
