@@ -43,35 +43,37 @@ namespace HangarAPI
                 Database db = doc.Database;
                 Editor ed = doc.Editor;
                 Transaction tr = db.TransactionManager.StartTransaction();
+                double sidePile = 0.25;
+                double bulgingPilesAgainstWall = 0.2;
                 string blockName;
                 for (int i = 0; i < hangarParam.QuantityPiles; i++)
                 {
                     blockName = "Pile" + i;
                     if ((i % 2) > 0)
-                        DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles / 2 - 1), 0, 0, 0.25, 0.25, hangarParam.HeightPiles);
+                        DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles / 2 - 1), 0, 0, areaPile, areaPile, hangarParam.HeightPiles);
                     else
-                        DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles / 2 - 1), hangarParam.HangarWidth, 0, 0.25, 0.25, hangarParam.HeightPiles);
+                        DrawObject((int)(i / 2) * hangarParam.HangarLength / (hangarParam.QuantityPiles / 2 - 1), hangarParam.HangarWidth, 0, areaPile, areaPile, hangarParam.HeightPiles);
                 }
                 for (int i = 0; i < 2; i++)
                 {
                     blockName = "LongWall" + i;
                     if (i == 0)
-                        DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
+                        DrawObject((areaPile - bulgingPilesAgainstWall) / 2, (areaPile - bulgingPilesAgainstWall) / 2, hangarParam.HeightPiles, hangarParam.HangarLength + bulgingPilesAgainstWall, bulgingPilesAgainstWall, hangarParam.WallHeight);
                     else
-                        DrawObject((0.25 - 0.2) / 2, (0.25 - 0.2) / 2 + hangarParam.HangarWidth, hangarParam.HeightPiles, hangarParam.HangarLength + 0.2, 0.2, hangarParam.WallHeight);
+                        DrawObject((areaPile - bulgingPilesAgainstWall) / 2, (areaPile - bulgingPilesAgainstWall) / 2 + hangarParam.HangarWidth, hangarParam.HeightPiles, hangarParam.HangarLength + bulgingPilesAgainstWall, bulgingPilesAgainstWall, hangarParam.WallHeight);
                 }
                 blockName = "Hangar";
-                DrawObject(0.25 / 2, 0.25 / 2, hangarParam.HeightPiles + hangarParam.WallHeight, hangarParam.HangarLength, hangarParam.HangarWidth, hangarParam.HangarHeight);
+                DrawObject(areaPile / 2, areaPile / 2, hangarParam.HeightPiles + hangarParam.WallHeight, hangarParam.HangarLength, hangarParam.HangarWidth, hangarParam.HangarHeight);
                 blockName = "FontWallLeft";
-                DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2, hangarParam.WallHeight);
+                DrawObject((areaPile - bulgingPilesAgainstWall) / 2, areaPile - (areaPile - bulgingPilesAgainstWall) / 2, hangarParam.HeightPiles, bulgingPilesAgainstWall, (hangarParam.HangarWidth - hangarParam.GateWidth - areaPile + (areaPile - bulgingPilesAgainstWall)) / 2, hangarParam.WallHeight);
                 blockName = "FontWallRigth";
-                DrawObject((0.25 - 0.2) / 2, 0.25 - (0.25 - 0.2) / 2 + (hangarParam.HangarWidth - hangarParam.GateWidth - 0.25 + (0.25 - 0.2)) / 2 + hangarParam.GateWidth, hangarParam.HeightPiles, 0.2, (hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.WallHeight);
+                DrawObject((areaPile - bulgingPilesAgainstWall) / 2, areaPile - (areaPile - bulgingPilesAgainstWall) / 2 + (hangarParam.HangarWidth - hangarParam.GateWidth - areaPile + (areaPile - bulgingPilesAgainstWall)) / 2 + hangarParam.GateWidth, hangarParam.HeightPiles, bulgingPilesAgainstWall, (hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.WallHeight);
                 blockName = "Gate";
-                DrawObject(0.25 / 2, (0.25 + hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.HeightPiles + hangarParam.WallHeight, 0, hangarParam.GateWidth, hangarParam.GateHeight);
+                DrawObject(areaPile / 2, (areaPile + hangarParam.HangarWidth - hangarParam.GateWidth) / 2, hangarParam.HeightPiles + hangarParam.WallHeight, 0, hangarParam.GateWidth, hangarParam.GateHeight);
                 blockName = "BackWall";
-                DrawObject((0.25 - 0.2) / 2 + hangarParam.HangarLength, (0.25 - 0.2) / 2 + 0.2, hangarParam.HeightPiles, 0.2, hangarParam.HangarWidth - 0.2, hangarParam.WallHeight);
+                DrawObject((areaPile - bulgingPilesAgainstWall) / 2 + hangarParam.HangarLength, (areaPile - bulgingPilesAgainstWall) / 2 + bulgingPilesAgainstWall, hangarParam.HeightPiles, bulgingPilesAgainstWall, hangarParam.HangarWidth - bulgingPilesAgainstWall, hangarParam.WallHeight);
                 blockName = "Roof";
-                DrawObject(0, (hangarParam.HangarWidth + 0.25) / 2, hangarParam.HeightPiles + hangarParam.WallHeight + hangarParam.HangarHeight, hangarParam.HangarLength + 0.25, hangarParam.HangarWidth, 0);
+                DrawObject(0, (hangarParam.HangarWidth + areaPile) / 2, hangarParam.HeightPiles + hangarParam.WallHeight + hangarParam.HangarHeight, hangarParam.HangarLength + areaPile, hangarParam.HangarWidth, 0);
 
                 //Внутренний метод DrawHangar-а, который создаёт объект по заданным координатам и размерам.
                 void DrawObject(double x, double y, double z, double length, double width, double height)
