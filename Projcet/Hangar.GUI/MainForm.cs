@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace HangarGUI
@@ -162,7 +161,7 @@ namespace HangarGUI
         }
 
         /// <summary>
-        /// Основываясь на теге TextBox-а, производит запись соответствующего пар-ра в класс.
+        /// Основываясь на TextBox-e, производит запись соответствующего пар-ра в класс.
         /// При ошибке записывает в текст labelError сообщение исключения и окрашивает поле в красный.
         /// В случае, если ошибка не возникла, отчищает labelError и textBox, до изначального состояния.
         /// </summary>
@@ -171,38 +170,32 @@ namespace HangarGUI
         {
             try
             {
-                switch (textBox.Tag)
-                {
-                    case "textGateHeight":
+                if(textGateHeight == textBox)
                         _hangarParam.GateHeight = double.Parse(textGateHeight.Text);
-                        break;
-                    case "textGateWidth":
+                if (textGateWidth == textBox)
                         _hangarParam.GateWidth = double.Parse(textGateWidth.Text);
-                        break;
-                    case "textHangarHeight":
+                if (textHangarHeight == textBox)
                         _hangarParam.HangarHeight = double.Parse(textHangarHeight.Text);
-                        break;
-                    case "textHangarLenght":
+                if (textHangarLenght == textBox)
                         _hangarParam.HangarLength = double.Parse(textHangarLenght.Text);
-                        break;
-                    case "textHangarWidth":
+                if (textHangarWidth == textBox)
                         _hangarParam.HangarWidth = double.Parse(textHangarWidth.Text);
-                        break;
-                    case "textWallHeight":
+                if (textWallHeight == textBox)
                         _hangarParam.WallHeight = double.Parse(textWallHeight.Text);
-                        break;
-                    case "textFirstSoil":
-                        _hangarParam.FirstSoil.SoilTypes = (SoilTypes)comboBoxFirstSoil.SelectedIndex;
-                        _hangarParam.FirstSoil.Size = double.Parse(textFirstSoil.Text);
-                        break;
-                    case "textSecondSoil":
-                        _hangarParam.SecondSoil.SoilTypes = (SoilTypes)comboBoxSecondSoil.SelectedIndex;
-                        _hangarParam.SecondSoil.Size = double.Parse(textSecondSoil.Text);
-                        break;
-                    case "textThirdSoil":
-                        _hangarParam.ThirdSoil.SoilTypes = (SoilTypes)comboBoxThirdSoil.SelectedIndex;
-                        _hangarParam.ThirdSoil.Size = double.Parse(textThirdSoil.Text);
-                        break;
+                if (textFirstSoil == textBox)
+                {
+                    _hangarParam.FirstSoil.SoilTypes = (SoilTypes)comboBoxFirstSoil.SelectedIndex;
+                    _hangarParam.FirstSoil.Size = double.Parse(textFirstSoil.Text);
+                }
+                if (textSecondSoil == textBox)
+                {
+                    _hangarParam.SecondSoil.SoilTypes = (SoilTypes)comboBoxSecondSoil.SelectedIndex;
+                    _hangarParam.SecondSoil.Size = double.Parse(textSecondSoil.Text);
+                }
+                if (textThirdSoil == textBox)
+                {
+                    _hangarParam.ThirdSoil.SoilTypes = (SoilTypes)comboBoxThirdSoil.SelectedIndex;
+                    _hangarParam.ThirdSoil.Size = double.Parse(textThirdSoil.Text);
                 }
                 textBox.BackColor = Color.White;
                 labelError.Text = "";
@@ -276,6 +269,15 @@ namespace HangarGUI
             TrackBar bar = (TrackBar)sender;
             _hangarParam.SnowLoad = (int)(400 *bar.Value / 10 + 200);
             labelSnowLoad.Text = "Снеговые нагрузки, кг/м2=" + _hangarParam.SnowLoad;
+            try
+            {
+                _hangarParam.CheckCompatibility();
+                labelError.Text = "";
+            }
+            catch (Exception ex)
+            {
+                WriteErrors(ex.Message);
+            }
         }
     }
 }

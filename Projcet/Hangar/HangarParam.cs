@@ -75,19 +75,29 @@ namespace HangarModel
         /// <summary>
         /// Словарь ограничений для параметров ангара
         /// </summary>
-        Dictionary<string, List<object>> _sizeRestrictions = new Dictionary<string, List<object>>();
+        Dictionary<string, double[]> _sizeRestrictions = new Dictionary<string, double[]>();
+        /// <summary>
+        /// Словарь названий для параметров ангара
+        /// </summary>
+        Dictionary<string, string> _nameRestrictions = new Dictionary<string, string>();
 
         /// <summary>
         /// Функция добавляющая в словарь ограничения для параметров ангара.
         /// </summary>
-        public HangarParam() 
+        public HangarParam()
         {
-            _sizeRestrictions.Add("HangarHeight", new List<object> { 2, 10, "Высота ангара" });
-            _sizeRestrictions.Add("HangarWidth", new List<object> { 2, 14, "Ширина ангара" });
-            _sizeRestrictions.Add("HangarLength", new List<object> { 2, 40, "Длина ангара" });
-            _sizeRestrictions.Add("GateHeight", new List<object> { 2, 10, "Высота ворот" });
-            _sizeRestrictions.Add("GateWidth", new List<object> { 0.25, 7, "Ширина ворот" });
-            _sizeRestrictions.Add("WallHeight", new List<object> { 0.1, 0.3, "Высота стены" });
+            _sizeRestrictions.Add("HangarHeight", new double[2] { 2, 10 });
+            _sizeRestrictions.Add("HangarWidth", new double[2] { 2, 14 });
+            _sizeRestrictions.Add("HangarLength", new double[2] { 2, 40 });
+            _sizeRestrictions.Add("GateHeight", new double[2] { 2, 10 });
+            _sizeRestrictions.Add("GateWidth", new double[2] { 0.25, 7 });
+            _sizeRestrictions.Add("WallHeight", new double[2] { 0.1, 0.3 });
+            _nameRestrictions.Add("HangarHeight", "Высота ангара");
+            _nameRestrictions.Add("HangarWidth", "Ширина ангара");
+            _nameRestrictions.Add("HangarLength", "Длина ангара");
+            _nameRestrictions.Add("GateHeight", "Высота ворот");
+            _nameRestrictions.Add("GateWidth", "Ширина ворот");
+            _nameRestrictions.Add("WallHeight", "Высота стены");
         }
 
         /// <summary>
@@ -288,11 +298,11 @@ namespace HangarModel
         /// <param name="value">Значение переменной для сравнения с ограничителями.</param>
         private void LimitCheck(string key, double value)
         {
-            double min = (double)Convert.ChangeType(_sizeRestrictions[key][0], typeof(double));
-            double max = (double)Convert.ChangeType(_sizeRestrictions[key][1], typeof(double));
-            string nameParam = (string)Convert.ChangeType(_sizeRestrictions[key][2], typeof(string));
+            double min = _sizeRestrictions[key][0];
+            double max =_sizeRestrictions[key][1];
+            string nameParam = _nameRestrictions[key];
             if ( value < min || value > max)
-                throw new ArgumentException(nameParam + "не может быть меньше " + min + "м или больше " + max + "м.");
+                throw new ArgumentException(nameParam + " не может быть меньше " + min + "м или больше " + max + "м.");
         }
 
         /// <summary>
@@ -303,27 +313,29 @@ namespace HangarModel
         /// </summary>
         public void CheckCompatibility()
         {
-            double specificLoadOfFirstSoil = FirstSoil.Load * 1.4 * FirstSoil.Size;
-            double specificLoadOfSecondSoil = SecondSoil.Load * 1.4 * SecondSoil.Size;
-            double specificLoadOfThirdSoil = ThirdSoil.Load * 1.4 * ThirdSoil.Size;
+            double depthFactor = 1.4;
+            int areaPile = 625;
+            double specificLoadOfFirstSoil = FirstSoil.Load * depthFactor * FirstSoil.Size;
+            double specificLoadOfSecondSoil = SecondSoil.Load * depthFactor * SecondSoil.Size;
+            double specificLoadOfThirdSoil = ThirdSoil.Load * depthFactor * ThirdSoil.Size;
             QuantityPiles = (1 + (int)HangarLength / 2) * 2;
             double roofArea = HangarLength * HangarWidth;
             double wallArea = (HangarHeight * HangarWidth + HangarHeight * HangarLength) * 2;
             double wallPerimeter = (HangarLength + HangarWidth) * 2;
             double pileDepth = roofArea * _seasonalSnowLoads + roofArea * _specificGravityOfProfiledSheet + wallArea * _specificGravityOfSteelSheet + _specificGravityOfReinforcedConcrete * wallPerimeter * 0.2 * WallHeight;
-            if (pileDepth * _safetyFactor / (625 * specificLoadOfFirstSoil) > QuantityPiles)
-                if (pileDepth * _safetyFactor / (625 * (specificLoadOfSecondSoil + specificLoadOfFirstSoil)) > QuantityPiles)
-                    if (pileDepth * _safetyFactor / (625 * (specificLoadOfSecondSoil + specificLoadOfFirstSoil + specificLoadOfThirdSoil)) > QuantityPiles)
+            if (pileDepth * _safetyFactor / (areaPile * specificLoadOfFirstSoil) > QuantityPiles)
+                if (pileDepth * _safetyFactor / (areaPile * (specificLoadOfSecondSoil + specificLoadOfFirstSoil)) > QuantityPiles)
+                    if (pileDepth * _safetyFactor / (areaPile * (specificLoadOfSecondSoil + specificLoadOfFirstSoil + specificLoadOfThirdSoil)) > QuantityPiles)
                     {
                         HeightPiles = 0;
                         throw new System.Exception("Ни один из слоёв грунта не способен выдержать ангар с весом = " + pileDepth + " кг.");
                     }
                     else
-                        HeightPiles = FirstSoil.Size + SecondSoil.Size + (pileDepth * _safetyFactor / (625 * QuantityPiles) - specificLoadOfFirstSoil - specificLoadOfSecondSoil) / ThirdSoil.Load * 1.4;
+                        HeightPiles = FirstSoil.Size + SecondSoil.Size + (pileDepth * _safetyFactor / (areaPile * QuantityPiles) - specificLoadOfFirstSoil - specificLoadOfSecondSoil) / ThirdSoil.Load * depthFactor;
                 else
-                    HeightPiles = FirstSoil.Size + (pileDepth * _safetyFactor / (625 * QuantityPiles) - specificLoadOfFirstSoil) / SecondSoil.Load * 1.4;
+                    HeightPiles = FirstSoil.Size + (pileDepth * _safetyFactor / (areaPile * QuantityPiles) - specificLoadOfFirstSoil) / SecondSoil.Load * depthFactor;
             else
-                HeightPiles = pileDepth * _safetyFactor / (625 * QuantityPiles * FirstSoil.Load * 1.4);
+                HeightPiles = pileDepth * _safetyFactor / (areaPile * QuantityPiles * FirstSoil.Load * depthFactor);
         }
 
     }
